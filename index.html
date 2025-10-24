@@ -67,6 +67,37 @@
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.3);
             z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        #mini-map.expanded {
+            width: 600px;
+            height: 450px;
+            bottom: 50%;
+            right: 50%;
+            transform: translate(50%, 50%);
+            z-index: 2000;
+        }
+        #expand-minimap-btn {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            background: rgba(100, 100, 100, 0.8);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            z-index: 1001;
+            transition: background 0.2s;
+        }
+        #expand-minimap-btn:hover {
+            background: rgba(80, 80, 80, 0.9);
         }
         #arcgis-container {
             width: 60%;
@@ -247,7 +278,9 @@
             </div>
             <div id="viewer-content">
                 <div id="loading">Loading Mapillary viewer...</div>
-                <div id="mini-map"></div>
+                <div id="mini-map">
+                    <button id="expand-minimap-btn" title="Expand/Collapse Map">⛶</button>
+                </div>
                 <div id="mini-map-loading">Loading map data...</div>
                 <button id="reload-minimap-btn" title="Reload image data">🔄 Force API Reload</button>
                 <button id="mapillary-link-btn">
@@ -677,6 +710,29 @@
                 btn.classList.remove('active');
                 btn.textContent = 'Show FOV';
             }
+        });
+
+        // Toggle mini map expansion
+        document.getElementById('expand-minimap-btn').addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event bubbling
+            const miniMapElement = document.getElementById('mini-map');
+            const expandBtn = document.getElementById('expand-minimap-btn');
+            
+            miniMapElement.classList.toggle('expanded');
+            
+            // Change icon based on state
+            if (miniMapElement.classList.contains('expanded')) {
+                expandBtn.textContent = '⛶'; // Could also use '✕' or '◱'
+                expandBtn.title = 'Collapse Map';
+            } else {
+                expandBtn.textContent = '⛶';
+                expandBtn.title = 'Expand Map';
+            }
+            
+            // Resize the map after transition completes
+            setTimeout(() => {
+                miniMap.resize();
+            }, 300);
         });
 
         fetchUserImages();
