@@ -77,6 +77,12 @@
             transform: translate(50%, 50%);
             z-index: 2000;
         }
+        #mini-map-container {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            overflow: hidden;
+        }
         #expand-minimap-btn {
             position: absolute;
             bottom: 5px;
@@ -233,13 +239,12 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 11px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
             z-index: 1001;
             transition: all 0.2s;
         }
         #reload-minimap-btn:hover {
             background: rgba(80, 80, 80, 0.9);
-            color: white;
         }
         #mapillary-link-btn {
             position: absolute;
@@ -279,6 +284,7 @@
             <div id="viewer-content">
                 <div id="loading">Loading Mapillary viewer...</div>
                 <div id="mini-map">
+                    <div id="mini-map-container"></div>
                     <button id="expand-minimap-btn" title="Expand/Collapse Map">⛶</button>
                     <div id="mini-map-loading">Loading map data...</div>
                     <button id="reload-minimap-btn" title="Reload image data">🔄 Force API Reload</button>
@@ -332,7 +338,7 @@
 
         // Initialize mini map
         const miniMap = new maplibregl.Map({
-            container: 'mini-map',
+            container: 'mini-map-container',
             style: {
                 version: 8,
                 sources: {
