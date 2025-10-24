@@ -208,8 +208,8 @@
         }
         #mini-map-loading {
             position: absolute;
-            bottom: 130px;
-            right: 20px;
+            top: -30px;
+            right: 0px;
             background: rgba(0, 0, 0, 0.8);
             color: white;
             padding: 8px 12px;
@@ -223,8 +223,8 @@
         }
         #reload-minimap-btn {
             position: absolute;
-            bottom: 40px;
-            right: 120px;
+            bottom: -40px;
+            left: 0px;
             background: #fff;
             color: #333;
             font-weight: bold;
@@ -280,9 +280,9 @@
                 <div id="loading">Loading Mapillary viewer...</div>
                 <div id="mini-map">
                     <button id="expand-minimap-btn" title="Expand/Collapse Map">⛶</button>
+                    <div id="mini-map-loading">Loading map data...</div>
+                    <button id="reload-minimap-btn" title="Reload image data">🔄 Force API Reload</button>
                 </div>
-                <div id="mini-map-loading">Loading map data...</div>
-                <button id="reload-minimap-btn" title="Reload image data">🔄 Force API Reload</button>
                 <button id="mapillary-link-btn">
                     <img src="https://play-lh.googleusercontent.com/z3qzEc13E2sDWky9LgqADojcdy8hrX_szuAAeX21k_dFe7GNXLIYXJtOu5RcE3_5Jz8" alt="Mapillary">
                     Open in Mapillary Web
