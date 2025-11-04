@@ -682,7 +682,7 @@
         document.getElementById('sync-btn').addEventListener('click', async () => {
             try {
                 const pos = await viewer.getPosition();
-                const arcgisZoom = 18;
+                const arcgisZoom = 20;
                 
                 const iframe = document.getElementById('arcgis-map');
                 const baseUrl = 'https://timmons-group.maps.arcgis.com/apps/mapviewer/index.html';
@@ -706,7 +706,7 @@
         document.getElementById('edit-btn').addEventListener('click', async () => {
             try {
                 const pos = await viewer.getPosition();
-                const arcgisZoom = 18;
+                const arcgisZoom = 20;
                 
                 const baseUrl = 'https://timmons-group.maps.arcgis.com/apps/webeditor/index.html';
                 const editorUrl = `${baseUrl}?webmap=9f2145c8c3674b9d864dd7e0d3477cf3&center=${pos.lng},${pos.lat}&level=${arcgisZoom}`;
